@@ -1,0 +1,41 @@
+import math
+
+
+def checher(a, b, c):
+    if a ** 2 + b ** 2 == c ** 2:
+        return True
+
+
+print('Введите, нужно найти площадь круга по радиусу или по сторонам?')
+
+while True:
+    name = input().strip().lower()
+    if name == 'по сторонам':
+        print('Напишите, сколько углов в заданной фигуре')
+        nums = int(input())
+        if nums == 3:
+            print('Напишите стороны треугольника ')
+            a = float(input())
+            b = float(input())
+            c = float(input())
+            p = (a + b + c) / 2
+            s = math.sqrt(p * (p - a) * (p - b) * (p - c))
+            ans = (s / p) ** 2 * math.pi
+            if checher(a, b, c):
+                print('Треугольник прямоугольный!')
+        else:
+            print('Напишите, чему равна сторона заданной фигуры')
+            side = float(input())
+            rad = side / (2 * math.tan(math.pi / nums))
+            ans = rad ** 2 * math.pi
+
+    elif name == 'по радиусу':
+        print('Введите радиус')
+        ans = math.pi * (float(input()) ** 2)
+
+    else:
+        print("Введите либо <по сторонам>, либо <по радиусу>")
+        continue
+
+    print(f"Площадь круга равна: {ans}")
+    break
